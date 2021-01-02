@@ -5,7 +5,7 @@
 from hamming import string_to_hamming_binary
 
 
-def string_hamming_distance_max_stop(string1, string2, max_dist):
+def naive_hamming_distance_max_stop(string1, string2, max_dist):
     dist_counter = 0
     for n in range(len(string1)):
         if string1[n] != string2[n]:
@@ -16,7 +16,7 @@ def string_hamming_distance_max_stop(string1, string2, max_dist):
 
 
 # assume strings are same length and limited to given alphabet
-def binary_hamming_distance_max_stop(string1, string2, max_dist):
+def hamming_distance_max_stop(string1, string2, max_dist):
     b1 = string_to_hamming_binary(string1)
     b2 = string_to_hamming_binary(string2)
     return binary_hamming_dist_calc_max_stop(b1, b2, max_dist)
