@@ -7,11 +7,12 @@ from hamming import string_hamming_distance, string_to_hamming_binary, binary_ha
 from hamming_max_dist import string_hamming_distance_max_stop, binary_hamming_distance_max_stop, \
     binary_hamming_dist_calc_max_stop, bit_count_max_stop
 
-
+CHARACTERS = ['A', 'G', 'T', 'C']
 def string_generator(size=63, chars=None):
     if chars is None:
-        chars = ['A', 'G', 'T', 'C']
+        chars = CHARACTERS
     return ''.join(random.choice(chars) for _ in range(size))
+
 
 
 # compute string hamming time

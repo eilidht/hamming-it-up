@@ -1,3 +1,4 @@
+# Simple string matching implementation for comparison
 # this method is from https://en.wikipedia.org/wiki/Hamming_distance
 def string_hamming_distance(string1, string2):
     dist_counter = 0
@@ -7,11 +8,34 @@ def string_hamming_distance(string1, string2):
     return dist_counter
 
 
+# '*' is the only wildcard recognised. Matches any character.
+def string_hamming_distance_wildcards(pattern, text):
+    dist_counter = 0
+    for n in range(len(pattern)):
+        if (pattern[n] != '*') & (pattern[n] != text[n]):
+            dist_counter += 1
+    return dist_counter
+
+
 # assume strings are same length and limited to given alphabet
 def binary_hamming_distance(string1, string2):
+    return total_binary_hamming(string1, string2) / 2
+
+
+def total_binary_hamming(string1, string2):
     b1 = string_to_hamming_binary(string1)
     b2 = string_to_hamming_binary(string2)
-    return binary_hamming_dist_calc(b1, b2)
+    return bit_count(b1 ^ b2)
+
+
+# '*' is the only wildcard recognised. Matches any character.
+def binary_hamming_distance_wildcards(pattern, text):
+    # Get hamming dist
+    dist = total_binary_hamming(pattern, text)
+    #  Subtract the number of wildcards in the pattern
+    dist = dist - pattern.count('*')
+    #  Divide by 2 to get number of differences between the strings
+    return dist / 2
 
 
 def binary_hamming_dist_calc(binary1, binary2):

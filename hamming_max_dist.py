@@ -42,10 +42,10 @@ def char_to_hamming_binary(text):
 
 # from https://wiki.python.org/moin/BitManipulation
 # from an algorithm published by Peter Wegner in CACM 3 (1960)
-# stop counting if max bits reachec
-def bit_count_max_stop(number, max):
+# stop counting if max bits reached
+def bit_count_max_stop(number, max_bits):
     count = 0
-    while (number > 0) & (count < max):
+    while (number > 0) & (count < max_bits):
         number &= number - 1
         count += 1
     return count
