@@ -31,7 +31,7 @@ string_hamming_distance(s1, s2)
     # timeit.repeat statement
     times = timeit.repeat(setup=SETUP_CODE,
                           stmt=TEST_CODE,
-                          repeat=3,
+                          repeat=10,
                           number=10000)
 
     # printing minimum exec. time
@@ -55,7 +55,7 @@ binary_hamming_distance(s1, s2)
     # timeit.repeat statement
     times = timeit.repeat(setup=SETUP_CODE,
                           stmt=TEST_CODE,
-                          repeat=3,
+                          repeat=10,
                           number=10000)
 
     # printing minimum exec. time
@@ -74,9 +74,9 @@ list_of_binary_strings1 = [string_to_hamming_binary(string_generator({length_of_
 list_of_binary_strings2 = [string_to_hamming_binary(string_generator({length_of_strings},{character_set})) for i in range(10)]'''
 
     TEST_CODE = ''' 
-s1 = choice(list_of_binary_strings1)
-s2 = choice(list_of_binary_strings2)
-binary_hamming_dist_calc(s1, s2)
+b1 = choice(list_of_binary_strings1)
+b2 = choice(list_of_binary_strings2)
+binary_hamming_dist_calc(b1, b2)
     '''
     # timeit.repeat statement
     times = timeit.repeat(setup=SETUP_CODE_PREPROCESSED_BINARY,
@@ -88,7 +88,34 @@ binary_hamming_dist_calc(s1, s2)
     print('Binary hamming string search time (not including preprocessing): {}'.format(min(times)))
 
 
+# compute binary hamming time (on preprocessed string to binaries) using scipy
+def scipy_binary_preprocessed_time():
+    length_of_strings = 63
+    character_set = ['A', 'G', 'T', 'C']
+    SETUP_CODE_PREPROCESSED_BINARY = f''' 
+from hamming import string_to_hamming_binary_array, scipy_binary_hamming_dist_calc
+from random import choice
+from __main__ import string_generator
+list_of_binary_arrays1 = [string_to_hamming_binary_array(string_generator({length_of_strings},{character_set})) for i in range(10)]
+list_of_binary_arrays2 = [string_to_hamming_binary_array(string_generator({length_of_strings},{character_set})) for i in range(10)]'''
+
+    TEST_CODE = ''' 
+b1 = choice(list_of_binary_arrays1)
+b2 = choice(list_of_binary_arrays2)
+scipy_binary_hamming_dist_calc(b1, b2)
+    '''
+    # timeit.repeat statement
+    times = timeit.repeat(setup=SETUP_CODE_PREPROCESSED_BINARY,
+                          stmt=TEST_CODE,
+                          repeat=10,
+                          number=10000)
+
+    # printing minimum exec. time
+    print('Scipy binary hamming string search time (not including preprocessing): {}'.format(min(times)))
+
+
 if __name__ == "__main__":
     string_time()
     binary_preprocessed_time()
     binary_inc_proccessing_time()
+    scipy_binary_preprocessed_time()

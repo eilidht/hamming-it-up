@@ -2,7 +2,8 @@ import time
 import unittest
 from random import choice
 
-from hamming import string_hamming_distance, string_to_hamming_binary, binary_hamming_distance, binary_hamming_dist_calc
+from hamming import string_hamming_distance, string_to_hamming_binary, binary_hamming_distance, \
+    binary_hamming_dist_calc, string_to_hamming_binary_array, scipy_binary_hamming_dist
 from hamming_max_dist import string_hamming_distance_max_stop, binary_hamming_distance_max_stop, \
     binary_hamming_dist_calc_max_stop, bit_count_max_stop
 
@@ -23,6 +24,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(expected_dist, actual_dist)
         actual_dist = binary_hamming_distance(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
+        actual_dist = scipy_binary_hamming_dist(s1, s2)
+        self.assertEqual(expected_dist, actual_dist)
 
     def test_hamming_dist_different(self):
         s1 = 'CAT'
@@ -32,6 +35,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(expected_dist, actual_dist)
         actual_dist = binary_hamming_distance(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
+        actual_dist = scipy_binary_hamming_dist(s1, s2)
+        self.assertEqual(expected_dist, actual_dist)
 
     def test_hamming_dist_all_different(self):
         s1 = 'CAT'
@@ -40,6 +45,8 @@ class MyTestCase(unittest.TestCase):
         actual_dist = string_hamming_distance(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
         actual_dist = binary_hamming_distance(s1, s2)
+        self.assertEqual(expected_dist, actual_dist)
+        actual_dist = scipy_binary_hamming_dist(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
 
     def test_hamming_dist_timing(self):
@@ -145,12 +152,14 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(0b0010, string_to_hamming_binary('C'))
         self.assertEqual(0b0100, string_to_hamming_binary('G'))
         self.assertEqual(0b1000, string_to_hamming_binary('T'))
+        self.assertEqual([0, 0, 0, 1], string_to_hamming_binary_array('A'))
 
     def test_two_letters_to_binary(self):
         self.assertEqual(0b00010001, string_to_hamming_binary('AA'))
         self.assertEqual(0b00101000, string_to_hamming_binary('CT'))
         self.assertEqual(0b01000001, string_to_hamming_binary('GA'))
         self.assertEqual(0b10000100, string_to_hamming_binary('TG'))
+        self.assertEqual([1,0,0,0,0,1,0,0], string_to_hamming_binary_array('TG'))
 
     def test_long_string_to_binary(self):
         self.assertEqual(0b0100000100101000100000010001001010001000000100010010100010000001,

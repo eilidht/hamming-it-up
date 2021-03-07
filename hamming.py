@@ -1,3 +1,5 @@
+from scipy.spatial.distance import hamming as scipy_hamming
+
 # this method is from https://en.wikipedia.org/wiki/Hamming_distance
 def string_hamming_distance(string1, string2):
     dist_counter = 0
@@ -14,8 +16,20 @@ def binary_hamming_distance(string1, string2):
     return binary_hamming_dist_calc(b1, b2)
 
 
+def scipy_binary_hamming_dist(string1, string2):
+    b1 = string_to_hamming_binary_array(string1)
+    b2 = string_to_hamming_binary_array(string2)
+    return scipy_binary_hamming_dist_calc(b1, b2)
+
+
 def binary_hamming_dist_calc(binary1, binary2):
     return bit_count(binary1 ^ binary2) / 2
+
+
+def scipy_binary_hamming_dist_calc(binary1, binary2):
+    percent = scipy_hamming(binary1, binary2)
+    number = (percent * len(binary1))/2
+    return number
 
 
 # Could make generic for any alphabet
@@ -29,6 +43,27 @@ def char_to_hamming_binary(text):
     if text == 'T':
         return 0b1000
     return 0
+
+
+# Could make generic for any alphabet
+def char_to_hamming_binary_array(text):
+    if text == 'A':
+        return [0,0,0,1]
+    if text == 'C':
+        return [0,0,1,0]
+    if text == 'G':
+        return [0,1,0,0]
+    if text == 'T':
+        return [1,0,0,0]
+    return [0,0,0,0]
+
+
+# assumes strings only contain given alphabet
+def string_to_hamming_binary_array(text):
+    result = []
+    for c in text:
+        result = result + char_to_hamming_binary_array(c)
+    return result
 
 
 # assumes strings only contain given alphabet

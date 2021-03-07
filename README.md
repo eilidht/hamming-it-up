@@ -128,3 +128,13 @@ For example, searching for the pattern T\*T in TTT and CAT:
     T*T:CAT  2/2 = 1 The strings differ by one character.
     ```
 
+## Faster binary hamming dist implementations in python
+This stackoverflow thread has a useful discussion https://stackoverflow.com/questions/32730202/fast-hamming-distance-computation-between-binary-numpy-arrays/32731794
+
+https://github.com/ilanschnell/bitarray in C efficient arrays of booleans as bits. 
+Has a count_xor() method - sounds perfect!
+
+Also https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.hamming.html worth a shot
+
+modern microprocessors have a specific instruction (POPCNT, “population count”) for counting the number of bits set to 1.
+https://en.wikipedia.org/wiki/SSE4#POPCNT_and_LZCNT
