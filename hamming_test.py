@@ -3,11 +3,8 @@ import unittest
 from random import choice, randint
 
 from hamming import naive_hamming_distance, string_to_hamming_binary, hamming_distance, binary_hamming_dist_calc, \
-    hamming_distance_wildcards, naive_hamming_distance_wildcards
+    hamming_distance_wildcards, naive_hamming_distance_wildcards,string_to_hamming_binary_array, scipy_binary_hamming_dist
 from hamming_max_dist import naive_hamming_distance_max_stop, hamming_distance_max_stop, \
-from hamming import string_hamming_distance, string_to_hamming_binary, binary_hamming_distance, \
-    binary_hamming_dist_calc, string_to_hamming_binary_array, scipy_binary_hamming_dist
-from hamming_max_dist import string_hamming_distance_max_stop, binary_hamming_distance_max_stop, \
     binary_hamming_dist_calc_max_stop, bit_count_max_stop
 
 
@@ -74,6 +71,8 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(expected_dist, actual_dist)
         actual_dist = hamming_distance(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
+        actual_dist = scipy_binary_hamming_dist(s1, s2)
+        self.assertEqual(expected_dist, actual_dist)
 
 
     def test_hamming_dist_wildcard_match(self):
@@ -81,8 +80,6 @@ class MyTestCase(unittest.TestCase):
         s2 = "CAAT"
         expected_dist = 0
         actual_dist = naive_hamming_distance_wildcards(s1, s2)
-        self.assertEqual(expected_dist, actual_dist)
-        actual_dist = scipy_binary_hamming_dist(s1, s2)
         self.assertEqual(expected_dist, actual_dist)
         actual_dist = hamming_distance_wildcards(s1, s2)
         self.assertEqual(expected_dist, actual_dist)

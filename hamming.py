@@ -1,5 +1,6 @@
 from scipy.spatial.distance import hamming as scipy_hamming
 
+
 # Simple string matching implementation for comparison
 # this method is from https://en.wikipedia.org/wiki/Hamming_distance
 def naive_hamming_distance(string1, string2):
@@ -52,7 +53,7 @@ def binary_hamming_dist_calc(binary1, binary2):
 
 def scipy_binary_hamming_dist_calc(binary1, binary2):
     percent = scipy_hamming(binary1, binary2)
-    number = (percent * len(binary1))/2
+    number = (percent * len(binary1)) / 2
     return number
 
 
@@ -72,14 +73,14 @@ def char_to_hamming_binary(text):
 # Could make generic for any alphabet
 def char_to_hamming_binary_array(text):
     if text == 'A':
-        return [0,0,0,1]
+        return [0, 0, 0, 1]
     if text == 'C':
-        return [0,0,1,0]
+        return [0, 0, 1, 0]
     if text == 'G':
-        return [0,1,0,0]
+        return [0, 1, 0, 0]
     if text == 'T':
-        return [1,0,0,0]
-    return [0,0,0,0]
+        return [1, 0, 0, 0]
+    return [0, 0, 0, 0]
 
 
 # assumes strings only contain given alphabet
