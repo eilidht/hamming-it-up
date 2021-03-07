@@ -3,21 +3,22 @@
 import timeit
 import random
 
-from hamming import string_hamming_distance, string_to_hamming_binary, binary_hamming_distance, binary_hamming_dist_calc
-from hamming_max_dist import string_hamming_distance_max_stop, binary_hamming_distance_max_stop, \
+from hamming import naive_hamming_distance, string_to_hamming_binary, hamming_distance, binary_hamming_dist_calc
+from hamming_max_dist import naive_hamming_distance_max_stop, hamming_distance_max_stop, \
     binary_hamming_dist_calc_max_stop, bit_count_max_stop
 
-
+CHARACTERS = ['A', 'G', 'T', 'C']
 def string_generator(size=63, chars=None):
     if chars is None:
-        chars = ['A', 'G', 'T', 'C']
+        chars = CHARACTERS
     return ''.join(random.choice(chars) for _ in range(size))
+
 
 
 # compute string hamming time
 def string_time():
     SETUP_CODE = ''' 
-from hamming import string_hamming_distance 
+from hamming import naive_hamming_distance 
 from random import choice
 from __main__ import string_generator
 list_of_strings1 = [string_generator() for i in range(10)]
@@ -26,7 +27,7 @@ list_of_strings2 = [string_generator() for i in range(10)]'''
     TEST_CODE = ''' 
 s1 = choice(list_of_strings1)
 s2 = choice(list_of_strings2)
-string_hamming_distance(s1, s2)
+naive_hamming_distance(s1, s2)
     '''
     # timeit.repeat statement
     times = timeit.repeat(setup=SETUP_CODE,
@@ -41,7 +42,7 @@ string_hamming_distance(s1, s2)
 # compute binary hamming time
 def binary_inc_proccessing_time():
     SETUP_CODE = ''' 
-from hamming import binary_hamming_distance 
+from hamming import hamming_distance 
 from random import choice
 from __main__ import string_generator
 list_of_strings1 = [string_generator() for i in range(10)]
@@ -50,7 +51,7 @@ list_of_strings2 = [string_generator() for i in range(10)]'''
     TEST_CODE = ''' 
 s1 = choice(list_of_strings1)
 s2 = choice(list_of_strings2)
-binary_hamming_distance(s1, s2)
+hamming_distance(s1, s2)
     '''
     # timeit.repeat statement
     times = timeit.repeat(setup=SETUP_CODE,

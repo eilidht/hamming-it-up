@@ -7,7 +7,7 @@ An algorithm for calculating hamming distance faster (with a small alphabet size
  other. For example, it requires one substitution to turn CAT into TAT.
  
  For binary strings a and b the Hamming distance is equal to the number of ones (population count) in a XOR b.
- XOR is a very efficient computation, and counting the number of ones only needs as many steps as there ones. 
+ XOR is a very efficient computation, and counting the number of ones only needs as many steps as there ones [Wegner]. 
  
  The key idea in the algorithm presented here is to map strings onto binary in such a way that the hamming distance
  can then be calculated using the efficient binary XOR operation, which can compare many characters simultaneously in 
@@ -128,12 +128,22 @@ For example, searching for the pattern T\*T in TTT and CAT:
     T*T:CAT  2/2 = 1 The strings differ by one character.
     ```
 
+[Wegner]A technique for counting ones in a binary computer by Peter Wegner, CACM 3 (1960)
 ## Faster binary hamming dist implementations in python
 This stackoverflow thread has a useful discussion https://stackoverflow.com/questions/32730202/fast-hamming-distance-computation-between-binary-numpy-arrays/32731794
 
 https://github.com/ilanschnell/bitarray in C efficient arrays of booleans as bits. 
 Has a count_xor() method - sounds perfect!
 
+
+An algorithm that maps the 4 DNA bases onto just 2 binary digits and then uses a somewhat similar algorithm to get the 
+hamming dist is described in this paper. Uses XOR, then some binary transformations to account for differing at one or
+two positions for mismatches, then counts the ones at the end (cardinality).
+IJFCC 2015 Vol.4(3): 165-169 ISSN: 2010-3751
+DOI: 10.7763/IJFCC.2015.V4.377
+Efficient Sequence Comparison Using Binary Codes
+Hossein Kamel Rahimi
+http://www.ijfcc.org/show-57-684-1.html
 Also https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.hamming.html worth a shot
 
 modern microprocessors have a specific instruction (POPCNT, “population count”) for counting the number of bits set to 1.

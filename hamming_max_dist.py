@@ -5,7 +5,7 @@
 from hamming import string_to_hamming_binary
 
 
-def string_hamming_distance_max_stop(string1, string2, max_dist):
+def naive_hamming_distance_max_stop(string1, string2, max_dist):
     dist_counter = 0
     for n in range(len(string1)):
         if string1[n] != string2[n]:
@@ -16,7 +16,7 @@ def string_hamming_distance_max_stop(string1, string2, max_dist):
 
 
 # assume strings are same length and limited to given alphabet
-def binary_hamming_distance_max_stop(string1, string2, max_dist):
+def hamming_distance_max_stop(string1, string2, max_dist):
     b1 = string_to_hamming_binary(string1)
     b2 = string_to_hamming_binary(string2)
     return binary_hamming_dist_calc_max_stop(b1, b2, max_dist)
@@ -42,10 +42,10 @@ def char_to_hamming_binary(text):
 
 # from https://wiki.python.org/moin/BitManipulation
 # from an algorithm published by Peter Wegner in CACM 3 (1960)
-# stop counting if max bits reachec
-def bit_count_max_stop(number, max):
+# stop counting if max bits reached
+def bit_count_max_stop(number, max_bits):
     count = 0
-    while (number > 0) & (count < max):
+    while (number > 0) & (count < max_bits):
         number &= number - 1
         count += 1
     return count
