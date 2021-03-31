@@ -148,3 +148,9 @@ Also https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance
 
 modern microprocessors have a specific instruction (POPCNT, “population count”) for counting the number of bits set to 1.
 https://en.wikipedia.org/wiki/SSE4#POPCNT_and_LZCNT
+
+This paper uses the same DNA encoding https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2735968/
+Casilli R, Marongiu A, Melchionna S, Palazzari P, Paparcone R, Rosato V. IMAGE: a new tool for the prediction of transcription factor binding sites. Bioinform Biol Insights. 2008;2:357-367. Published 2008 Oct 3.
+
+Note to self 
+CMake projects should use: "-DCMAKE_TOOLCHAIN_FILE=C:/src/win64/vcpkg/scripts/buildsystems/vcpkg.cmake"
