@@ -1,8 +1,7 @@
 
-#include <string>
-#include <vector>
 #include <array>
-#include <cstdint>
+#include <hamming/hamming.h>
+namespace hamming{
 using std::string;
 using std::vector;
 using std::uint8_t;
@@ -73,19 +72,19 @@ int hamming_distance64(unsigned long long x, unsigned long long y)
 {
     return __builtin_popcountll(x ^ y);
 }
-
-#include <iostream>
-int main() {
-    string s1 = "CAT";
-    string s2 = "TAT";
-    vector<uint8_t> b1 = string_to_hamming_binary(s1);
-    vector<uint8_t> b2 = string_to_hamming_binary(s2);
-    // auto r= f_xor(b1,b2);
-
-    //  int result = use_my_f_xor();
-    unsigned long long x = 1;
-    unsigned long long y = 7;
-    int result = hamming_distance64(x,y);
-
-    std::cout << result;
 }
+//#include <iostream>
+//int main() {
+//    string s1 = "CAT";
+//   string s2 = "TAT";
+//    vector<uint8_t> b1 = string_to_hamming_binary(s1);
+////    vector<uint8_t> b2 = string_to_hamming_binary(s2);
+//    // auto r= f_xor(b1,b2);
+//
+//    //  int result = use_my_f_xor();
+//    unsigned long long x = 1;
+//    unsigned long long y = 7;
+//    int result = hamming_distance64(x,y);
+//
+//    std::cout << result;
+//}
