@@ -128,8 +128,10 @@ For example, searching for the pattern T\*T in TTT and CAT:
     T*T:CAT  2/2 = 1 The strings differ by one character.
     ```
 
+## References
 [Wegner]A technique for counting ones in a binary computer by Peter Wegner, CACM 3 (1960)
-## Faster binary hamming dist implementations in python
+
+Faster binary hamming dist implementations in python
 This stackoverflow thread has a useful discussion https://stackoverflow.com/questions/32730202/fast-hamming-distance-computation-between-binary-numpy-arrays/32731794
 
 https://github.com/ilanschnell/bitarray in C efficient arrays of booleans as bits. 
