@@ -1,0 +1,14 @@
+jupyterlab
+matplotlib
+bottleneck
+numba
+numexpr
+snakeviz
+memory_profiler
+ipython_memory_usage
+line_profiler
+scikit-learn
+dask[complete]
+pyarrow
+graphviz
+tqdm
