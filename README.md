@@ -31,6 +31,8 @@ An algorithm for calculating hamming distance faster (with a small alphabet size
  G 0100
  T 1000
 ```
+I later discovered that this is known as one-hot encoding. I haven't found any references to it being used in 
+DNA hamming distance comparisons.
  
  Each of these binary representations has a hamming distance of 2 when compared with any other. E.g.
  
